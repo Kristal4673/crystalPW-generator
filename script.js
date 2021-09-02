@@ -121,7 +121,6 @@ function questions() {
   ) {
     alert("You must choose one character");
   }
-
   var pwInput = {
     length: length,
     numbers: askNumbers,
@@ -134,15 +133,21 @@ function questions() {
 }
 
 function randomizedInput() {
-  var arr = pwInput.split(" "); 
-  arr.sort(function () { return 0.5 - Math.random(); }); 
-  pwInput = arr.join(" ");
-  return pwInput; 
+   var arr = pwInput.split(""); //convert string into array
 
+  arr.sort(function () {
+    return 0.5 - Math.random();
+  });
+
+pwInput = arr.join("");  //convert array into string
+
+  return pwInput;
 }
 function generatePassword() {
   var userInput = questions();
   var randomInput = randomizedInput();
+
+  console.log(random); 
 }
 
 // Write password to the #password input
@@ -153,3 +158,4 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
