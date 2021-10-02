@@ -126,21 +126,7 @@ function questions() {
 
   return pwInput;
 }
-console.log();
-
-function randomizedInput() {
-  var arr = pwInput.split(""); //convert string into array
-
-  arr.sort(function () {
-    return 0.5 - Math.random();
-  });
-
-  pwInput = arr.join(""); //convert array into string
-
-  return pwInput;
-}
 function generatePassword() {
-  var userInput = questions();
   var newPW;
   //what to pull the characters
   var characters = [];
@@ -158,11 +144,11 @@ function generatePassword() {
   }
   if (pwInput.uppercase) {
     //add lowercase to charaters 
-     characters = characters.concat(upperCase);
+    characters = characters.concat(upperCase);
   }
   if (pwInput.special) {
     //add lowercase to charaters 
-     characters = characters.concat(special);
+    characters = characters.concat(special);
   }
   console.log(characters); 
   //for loop checking to see how long character array is and *
