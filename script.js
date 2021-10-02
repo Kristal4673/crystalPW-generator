@@ -1,8 +1,11 @@
-// Assignment Code
 var generateBtn = document.querySelector("#generate");
+// Variables
+var inputEnter;
+var pwInput;
 
-//arrays of possible character choices
+//arrays of possible numbers
 var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+//arrays of possible Uppercase letters
 var upperCase = [
   "A",
   "B",
@@ -31,6 +34,7 @@ var upperCase = [
   "Y",
   "Z",
 ];
+//arrays of possible lowercase
 var lowerCase = [
   "a",
   "b",
@@ -59,6 +63,7 @@ var lowerCase = [
   "y",
   "z",
 ];
+//arrays of possible numbers
 var special = [
   "~",
   "!",
@@ -76,16 +81,6 @@ var special = [
   "<",
   ">",
   "/",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
 ];
 
 function questions() {
@@ -121,7 +116,7 @@ function questions() {
   ) {
     alert("You must choose one character");
   }
-  var pwInput = {
+  pwInput = {
     length: length,
     numbers: askNumbers,
     lowercase: askLowerCase,
@@ -131,31 +126,60 @@ function questions() {
 
   return pwInput;
 }
+console.log();
 
 function randomizedInput() {
-   var arr = pwInput.split(""); //convert string into array
+  var arr = pwInput.split(""); //convert string into array
 
   arr.sort(function () {
     return 0.5 - Math.random();
   });
 
-pwInput = arr.join("");  //convert array into string
+  pwInput = arr.join(""); //convert array into string
 
   return pwInput;
 }
 function generatePassword() {
   var userInput = questions();
-  var randomInput = randomizedInput();
+  var newPW;
+  //what to pull the characters
+  var characters = [];
 
-  console.log(random); 
+  //its being assigned after this question funcation run 
+  if (pwInput.numbers) {
+    // add numbers to characters  
+  
+    characters = characters.concat(numbers);
+    
+  }
+  if (pwInput.lowercase) {
+    //add lowercase to charaters 
+    characters = characters.concat(lowerCase);
+  }
+  if (pwInput.uppercase) {
+    //add lowercase to charaters 
+     characters = characters.concat(upperCase);
+  }
+  if (pwInput.special) {
+    //add lowercase to charaters 
+     characters = characters.concat(special);
+  }
+  console.log(characters); 
+  //for loop checking to see how long character array is and *
+  for (var i = 0; i < pwInput.length; i++) {
+    newPW += characters[Math.floor(Math.random()* characters.length)];
+      console.log(newPW); 
+  }
+  console.log(newPW); 
+  return newPW; 
 }
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
+  passwordText.value = password; 
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
