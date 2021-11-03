@@ -85,9 +85,8 @@ var special = [
 
 function questions() {
   //!prompt number of characters
-  var length = parseInt(
-    prompt("Choose password length between 8 and 128 characters.")
-  );
+  var promptResult = prompt('Select a password length between 8 -128')
+  var length = parseInt(promptResult );
   //!get value from that prompt
   //!strong password
   if (length < 8 || length > 128) {
@@ -128,10 +127,12 @@ function questions() {
 }
 function generatePassword() {
   var newPW;
+  //var numbers;
+  pwInput = questions()
   //what to pull the characters
   var characters = [];
 
-  //its being assigned after this question funcation run 
+  //its being assigned after this question function runs 
   if (pwInput.numbers) {
     // add numbers to characters  
   
